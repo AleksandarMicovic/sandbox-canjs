@@ -6,7 +6,11 @@ define(['can/control', 'can/view', 'can/view/stache'], function(Control, View) {
 	},
 	render: function() {
 	    var rendered = this.render_template({}, {});
-	    $("#content").html(rendered);
+	    $("#content").fadeOut(250, function() {
+		$("#content").html("");
+		$("#content").html(rendered);
+		$("#content").fadeIn(250);
+	    });	   
 	}
     });
 });
