@@ -1,8 +1,19 @@
 define(['can/route',
 	'can/control',
         'controllers_dashboard',
-        'controllers_livestock'], 
-       function(router, Control, Dashboard, Livestock) {
+        'controllers_livestock',
+        'controllers_crops',
+        'controllers_inventory',
+        'controllers_hands',
+        'controllers_transactions'], 
+       function(router,
+		Control,
+		Dashboard,
+		Livestock,
+		Crops,
+		Inventory,
+		Hands,
+	        Transactions) {
     
     return can.Control.extend({
 	init: function() {
@@ -10,6 +21,10 @@ define(['can/route',
 
 	    this.dashboard = new Dashboard();
 	    this.livestock = new Livestock();
+	    this.crops = new Crops();
+	    this.inventory = new Inventory();
+	    this.hands = new Hands();
+	    this.transactions = new Transactions();
 
 	    router.ready();
 
@@ -51,8 +66,16 @@ define(['can/route',
 	call_view: function(value) {
 	    if (value === "dashboard") {
 		this.dashboard.render();
-	    } else if (value == "livestock") {
+	    } else if (value === "livestock") {
 		this.livestock.render();
+	    } else if (value === "crops") {
+		this.crops.render();
+	    } else if (value === "inventory") {
+		this.inventory.render();
+	    } else if (value === "hands") {
+		this.hands.render();
+	    } else if (value === "transactions") {
+		this.transactions.render();
 	    }
 	}
     });

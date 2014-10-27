@@ -34,10 +34,10 @@
             <li><a href="#crops">Crops</a></li>
             <li><a href="#inventory">Inventory</a></li>
             <li><a href="#hands">Hands</a></li>	    	        	    
-            <li><a href="#market">Market</a></li>
+            <li><a href="#transactions">Transactions</a></li>
           </ul>
 
-	  <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Aleks</a></p>
+	  <p class="navbar-text navbar-right">Signed in as Aleks</p>
 	</div>
       </div>
     </nav>
@@ -123,6 +123,118 @@
 	  </div>
 	</div>
       </div>
+    </script>
+
+    <script type="text/stache" id="crops_template">
+      <div class="row">
+	<div class="col-md-10 col-md-offset-1">
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+              <h3 class="panel-title">Crops</h3>
+	    </div>
+	    <div class="panel-body">
+	      list of all crops in a table, showing type, yeild %, costs, scheduled watering, scheduled tilling, water received, gps box, size in acres
+	      at the end show % positive
+	    </div>
+	    <div class="panel-footer">
+	      Add new crop
+	    </div>
+	  </div>
+	</div>
+      </div>      
+    </script>
+
+    <script type="text/stache" id="inventory_list_template">
+      <div class="row">
+	<div class="col-md-10 col-md-offset-1">
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+              <h3 class="panel-title">Inventory</h3>
+	    </div>
+	    <div class="panel-body">
+	      list of all inventory, the item, type, amount, price
+	    </div>
+	    <div class="panel-footer">
+	      add new inventory item
+	    </div>
+	  </div>
+	</div>
+      </div>      
+    </script>
+
+    <script type="text/stache" id="hands_list_template">
+      <div class="row">
+	<div class="col-md-5 col-md-offset-1">
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+              <h3 class="panel-title">Name of hand here</h3>
+	    </div>
+	    <div class="panel-body">
+	      list age, gender, title, GPS coordinates, and current task, and under it all, list a placeholder image of exactly where they are in the farm
+	    </div>
+	    <div class="panel-footer">
+	      Update
+	    </div>
+	  </div>
+	</div>
+	<div class="col-md-5">
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+              <h3 class="panel-title">Name of hand here</h3>
+	    </div>
+	    <div class="panel-body">
+	      list age, gender, title, GPS coordinates, and current task, and under it all, list a placeholder image of exactly where they are in the farm
+	    </div>
+	    <div class="panel-footer">
+	      Update
+	    </div>
+	  </div>
+	</div>
+	<div class="col-md-5 col-md-offset-1">
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+              <h3 class="panel-title">Name of hand here</h3>
+	    </div>
+	    <div class="panel-body">
+	      list age, gender, title, GPS coordinates, and current task, and under it all, list a placeholder image of exactly where they are in the farm
+	    </div>
+	    <div class="panel-footer">
+	      Update
+	    </div>
+	  </div>
+	</div>
+	<div class="col-md-5">
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+              <h3 class="panel-title">Name of hand here</h3>
+	    </div>
+	    <div class="panel-body">
+	      list age, gender, title, GPS coordinates, and current task, and under it all, list a placeholder image of exactly where they are in the farm
+	    </div>
+	    <div class="panel-footer">
+	      Update
+	    </div>
+	  </div>
+	</div>
+      </div>      
+    </script>
+
+    <script type="text/stache" id="transactions_list_template">
+      <div class="row">
+	<div class="col-md-10 col-md-offset-1">
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+              <h3 class="panel-title">Transactions</h3>
+	    </div>
+	    <div class="panel-body">
+	      stuff sold, date, amount, total
+	    </div>
+	    <div class="panel-footer">
+	      add new transaction
+	    </div>
+	  </div>
+	</div>
+      </div>      
     </script>
   </body>
 </html>

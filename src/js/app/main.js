@@ -20,7 +20,12 @@ require.config({
 	// Controllers
 
 	controllers_dashboard: "app/controllers/dashboard",
-	controllers_livestock: "app/controllers/livestock"
+	controllers_livestock: "app/controllers/livestock",
+	controllers_crops: "app/controllers/crops",
+	controllers_inventory: "app/controllers/inventory",
+	controllers_hands: "app/controllers/hands",
+	controllers_transactions: "app/controllers/transactions"
+
     },
     shim: {
         bootstrap: {
