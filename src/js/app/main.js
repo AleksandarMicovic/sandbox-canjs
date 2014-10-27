@@ -1,10 +1,25 @@
 require.config({
     baseUrl: "js/",
     paths: {
+	// Libraries
+
 	jquery: "vendor/jquery/jquery.min",
 	bootstrap: "vendor/bootstrap/bootstrap.min",
 	can: "vendor/can/can",
-	canStache: "vendor/can/can/view/stache"
+
+	// App
+
+	app: "app/app",
+	router: "app/router",
+
+	// Models
+
+	// Views
+	// No "real" JS views as they're stored in index.html as templates.
+
+	// Controllers
+
+	controllers_dashboard: "app/controllers/dashboard"
     },
     shim: {
         bootstrap: {
@@ -14,12 +29,11 @@ require.config({
 });
 
 require([
-  'jquery',
-  'can',
-  'canStache',
-  'bootstrap'
-], function($, can, canStache) {
-    $(document).ready(function() {
-	alert("sup");
+    'jquery',
+    'app',
+    'bootstrap'
+], function($, App) {
+    $(function() {
+	app = new App();
     });
 });
