@@ -19,7 +19,8 @@ require.config({
 
 	// Controllers
 
-	controllers_dashboard: "app/controllers/dashboard"
+	controllers_dashboard: "app/controllers/dashboard",
+	controllers_livestock: "app/controllers/livestock"
     },
     shim: {
         bootstrap: {

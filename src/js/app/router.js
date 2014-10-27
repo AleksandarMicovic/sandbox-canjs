@@ -1,11 +1,15 @@
 define(['can/route',
 	'can/control',
-        'controllers_dashboard'], function(router, Control, Dashboard) {
+        'controllers_dashboard',
+        'controllers_livestock'], 
+       function(router, Control, Dashboard, Livestock) {
+    
     return can.Control.extend({
 	init: function() {
 	    // Instantiate our views first.
 
 	    this.dashboard = new Dashboard();
+	    this.livestock = new Livestock();
 
 	    router.ready();
 
@@ -47,6 +51,8 @@ define(['can/route',
 	call_view: function(value) {
 	    if (value === "dashboard") {
 		this.dashboard.render();
+	    } else if (value == "livestock") {
+		this.livestock.render();
 	    }
 	}
     });
