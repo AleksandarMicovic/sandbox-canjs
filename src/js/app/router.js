@@ -27,7 +27,7 @@ define(['can/route',
 
     Route.ready(false);
 
-    var hash = window.location.hash.replace('#', '').replace("!", "");
+    var hash = window.location.hash.replace('#!', '');
 
     if (hash !== "") {
         Route.attr("page", hash);
