@@ -5,8 +5,10 @@ define(['can/route',
         'controllers_crops',
         'controllers_inventory',
         'controllers_hands',
-        'controllers_transactions'], 
-       function(router,
+        'controllers_transactions',
+       	'can/control/route',
+       ], 
+       function(Route,
 		Control,
 		Dashboard,
 		Livestock,
@@ -14,70 +16,58 @@ define(['can/route',
 		Inventory,
 		Hands,
 	        Transactions) {
-    
-    return can.Control.extend({
+
+
+    var dashboard = new Dashboard();
+    var livestock = new Livestock();
+    var crops = new Crops();
+    var inventory = new Inventory();
+    var hands = new Hands();
+    var transactions = new Transactions();
+
+    Route.ready(false);
+
+    var hash = window.location.hash.replace('#', '').replace("!", "");
+
+    if (hash !== "") {
+        Route.attr("page", hash);
+    }
+
+    Route.ready(true);
+
+    return Control.extend({
 	init: function() {
-	    // Instantiate our views first.
+	    // If there is no route, by default route to the dashboard.
 
-	    this.dashboard = new Dashboard();
-	    this.livestock = new Livestock();
-	    this.crops = new Crops();
-	    this.inventory = new Inventory();
-	    this.hands = new Hands();
-	    this.transactions = new Transactions();
-
-	    router.ready();
-
-	    this.bind_navigation();
-	    this.bind_page_changed();
-
-	    if (router.attr("page") == undefined) {
-		router.attr("page", "dashboard");
-	    } else {
-		this.update_navigation(router.attr("page"));
-		this.call_view(router.attr("page"));
+	    if (Route.attr("page") == undefined) {
+		Route.attr("page", "dashboard");
 	    }
 	},
-	bind_navigation: function() {
-	    $("#navigation a").click(function(ev) {
-		ev.preventDefault();
-		router.attr("page", $(this).attr("href").substr(1));
-	    });
+        'li click': function(li) {
+	    console.log('dasn');
 	},
-	bind_page_changed: function() {
-	    var that = this;
-
-	    router.bind("page", function(ev, new_value) {
-		that.update_navigation(new_value);
-		that.call_view(new_value);
-	    });
+	'route': function(data) {
+	    // Empty route. Ignore, since we default to dashboard.
 	},
-	update_navigation: function(value, first_run) {
-	    $("#navigation a").each(function() {		    
-		var name = $(this).attr('href').substr(1);
-
-		if (name === value) {
-		    $(this).parent().addClass("active");
-		} else {
-		    $(this).parent().removeClass("active");
-		}
-	    }); 
-	},
-	call_view: function(value) {
-	    if (value === "dashboard") {
-		this.dashboard.render();
-	    } else if (value === "livestock") {
-		this.livestock.render();
-	    } else if (value === "crops") {
-		this.crops.render();
-	    } else if (value === "inventory") {
-		this.inventory.render();
-	    } else if (value === "hands") {
-		this.hands.render();
-	    } else if (value === "transactions") {
-		this.transactions.render();
+	':page route': function(data) {
+	    if (data.page === "dashboard") {
+		dashboard.render();
+	    } else if (data.page === "livestock") {
+		livestock.render();
+	    } else if (data.page === "crops") {
+		crops.render();
+	    } else if (data.page === "inventory") {
+		inventory.render();
+	    } else if (data.page === "hands") {
+		hands.render();
+	    } else if (data.page === "transactions") {
+		transactions.render();
 	    }
+
+	    // Update navigation.
+	    
+	    $("#navigation li").removeClass("active");
+	    $(".nav [href=#" + data.page + "]").parent().addClass("active");
 	}
     });
 });
-
