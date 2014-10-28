@@ -59,7 +59,7 @@ define(['can/route',
 	    } else if (data.page === "inventory") {
 		inventory.render();
 	    } else if (data.page === "hands") {
-		hands.render();
+		hands.list();
 	    } else if (data.page === "transactions") {
 		transactions.render();
 	    }

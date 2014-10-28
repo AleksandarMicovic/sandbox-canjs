@@ -14,6 +14,8 @@ require.config({
 
 	// Models
 
+	models_hand: "app/models/hand",
+
 	// Views
 	// No "real" JS views as they're stored in index.html as templates.
 
@@ -24,8 +26,11 @@ require.config({
 	controllers_crops: "app/controllers/crops",
 	controllers_inventory: "app/controllers/inventory",
 	controllers_hands: "app/controllers/hands",
-	controllers_transactions: "app/controllers/transactions"
+	controllers_transactions: "app/controllers/transactions",
 
+	// Fixture
+
+	fixture: "app/fixture"
     },
     shim: {
         bootstrap: {
@@ -37,7 +42,8 @@ require.config({
 require([
     'jquery',
     'app',
-    'bootstrap'
+    'bootstrap',
+    'fixture'
 ], function($, App) {
     $(function() {
 	app = new App();

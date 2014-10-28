@@ -164,10 +164,11 @@
 
     <script type="text/stache" id="hands_list_template">
       <div class="row">
-	<div class="col-md-5 col-md-offset-1">
+	{{#each hands}}
+	<div class="col-md-5 {{#oddEven}}{{number}}{{/oddEven}}">
 	  <div class="panel panel-default">
 	    <div class="panel-heading">
-              <h3 class="panel-title">Name of hand here</h3>
+              <h3 class="panel-title">{{name}}</h3>
 	    </div>
 	    <div class="panel-body">
 	      list age, gender, title, GPS coordinates, and current task, and under it all, list a placeholder image of exactly where they are in the farm
@@ -177,45 +178,7 @@
 	    </div>
 	  </div>
 	</div>
-	<div class="col-md-5">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Name of hand here</h3>
-	    </div>
-	    <div class="panel-body">
-	      list age, gender, title, GPS coordinates, and current task, and under it all, list a placeholder image of exactly where they are in the farm
-	    </div>
-	    <div class="panel-footer">
-	      Update
-	    </div>
-	  </div>
-	</div>
-	<div class="col-md-5 col-md-offset-1">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Name of hand here</h3>
-	    </div>
-	    <div class="panel-body">
-	      list age, gender, title, GPS coordinates, and current task, and under it all, list a placeholder image of exactly where they are in the farm
-	    </div>
-	    <div class="panel-footer">
-	      Update
-	    </div>
-	  </div>
-	</div>
-	<div class="col-md-5">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Name of hand here</h3>
-	    </div>
-	    <div class="panel-body">
-	      list age, gender, title, GPS coordinates, and current task, and under it all, list a placeholder image of exactly where they are in the farm
-	    </div>
-	    <div class="panel-footer">
-	      Update
-	    </div>
-	  </div>
-	</div>
+	{{/each}}
       </div>      
     </script>
 
