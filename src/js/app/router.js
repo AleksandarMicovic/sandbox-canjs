@@ -17,23 +17,31 @@ define(['can/route',
 		Hands,
 	        Transactions) {
 
-
-    var dashboard = new Dashboard();
-    var livestock = new Livestock();
-    var crops = new Crops();
-    var inventory = new Inventory();
-    var hands = new Hands();
-    var transactions = new Transactions();
-
-    Route.ready(false);
-
-    var hash = window.location.hash.replace('#!', '');
-
-    if (hash !== "") {
-        Route.attr("page", hash);
+    var views = {
+	dashboard: new Dashboard(),
+	livestock: new Livestock(),
+	crops: new Crops(),
+	inventory: new Inventory(),
+	hands: new Hands(),
+	transactions: new Transactions()
     }
 
-    Route.ready(true);
+    Route(":page");	   
+    Route("page/:id");
+
+    Route.ready();
+
+    var params = Route.deparam(window.location.hash);
+    var page = window.location.hash.replace("#!", "");
+
+    if (!$.isEmptyObject(params)) {
+	if (params.id) {
+	    views[page].edit(params.id); 
+	} else {
+	    views[page].list();
+	}
+	$(".nav [data-item=" + page + "]").parent().addClass("active");
+    }
 
     return Control.extend({
 	init: function() {
@@ -43,31 +51,17 @@ define(['can/route',
 		Route.attr("page", "dashboard");
 	    }
 	},
-        'li click': function(li) {
-	    console.log('dasn');
-	},
-	'route': function(data) {
-	    // Empty route. Ignore, since we default to dashboard.
+	'route': function(){
+	    window.location.hash = '#!dashboard';
 	},
 	':page route': function(data) {
-	    if (data.page === "dashboard") {
-		dashboard.render();
-	    } else if (data.page === "livestock") {
-		livestock.render();
-	    } else if (data.page === "crops") {
-		crops.render();
-	    } else if (data.page === "inventory") {
-		inventory.render();
-	    } else if (data.page === "hands") {
-		hands.list();
-	    } else if (data.page === "transactions") {
-		transactions.render();
-	    }
+	    views[data.page].list();
 
-	    // Update navigation.
-	    
 	    $("#navigation li").removeClass("active");
-	    $(".nav [href=#" + data.page + "]").parent().addClass("active");
+	    $(".nav [data-item=" + Route.attr('page') + "]").parent().addClass("active");
+	},
+	'hands/:id route': function(data) {
+	    views.hands.edit(data.id);
 	}
     });
 });

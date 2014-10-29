@@ -6,7 +6,7 @@ define(['models_hand',
 	init: function() {
 	    this.data = {};
 	    this.list_template = View.view.render("hands_list_template");
-	    this.current_template = this.list_template;
+	    this.edit_template = View.view.render("hands_edit_template");
 	},
 	list: function() {
 	    var hands = [];
@@ -22,13 +22,22 @@ define(['models_hand',
 		    hands: hands
 		}
 
-		console.log(data);
-
-		that.render(data)
+		that.render(that.list_template, data);
 	    });
 	},
-	render: function(data) {
-	    var rendered = this.current_template(data, { 
+	edit: function(id) {
+	    var that = this;
+
+	    Hand.findOne({id: id}, function(hand) {
+		var data = {
+		    hand: hand
+		}
+
+		that.render(that.edit_template, data);
+	    })
+	},
+	render: function(template, data) {
+	    var rendered = template(data, { 
 		oddEven: function(input) {
 		    return input.context.number % 2 == 0 ? 'col-md-offset-1':'';
 		}

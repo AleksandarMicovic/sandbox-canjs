@@ -4,7 +4,7 @@ define(['can/control', 'can/view', 'can/view/stache'], function(Control, View) {
 	    this.data = {};
 	    this.render_template = View.view("livestock_template");
 	},
-	render: function() {
+	list: function() {
 	    var rendered = this.render_template({}, {});
 	    $("#content").fadeOut(250, function() {
 		$("#content").html("");
