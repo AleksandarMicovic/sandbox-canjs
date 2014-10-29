@@ -116,7 +116,9 @@ define(['models_crop', 'can/control', 'can/view', 'can/view/stache'], function(C
                     // Deleted entries still retain undefined in fixtures, so
                     // we need to be sure to skip them.   
 
-                    crops.push(crop);
+                    if (crop != undefined) {
+                        crops.push(crop);
+                    }
                 });
 
                 var data = {
