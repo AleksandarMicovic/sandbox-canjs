@@ -114,7 +114,7 @@ define(['models_livestock',
                     $.each(response, function(i, animal) {
                         // Deleted entries still retain undefined in fixtures, so
                         // we need to be sure to skip them.
-                        if (animal == undefined) {
+                        if (animal != undefined) {
                             livestock.push(animal);   
                         }
                     });
