@@ -1,0 +1,7 @@
+.crops-table img, .livestock-table img{
+	width: 30%;
+}
+
+.crops-table th.location  {
+	width: 20%;
+}

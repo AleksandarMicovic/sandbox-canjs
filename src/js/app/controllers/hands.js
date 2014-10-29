@@ -37,7 +37,6 @@ define(['models_hand',
             },
 
             '#delete click': function(el, ev) {
-                console.log("deleting!")
                 var that = this;
 
                 this.model.destroy(function() {
@@ -51,14 +50,12 @@ define(['models_hand',
                 ev.stopPropagation();
 
                 // Better to use binding here to track for changes, but for readability
-                // and organization, we'll juse do everything one-by-one.
+                // and organization, we'll just do everything one-by-one.
 
                 this.model.attr("name", $("[name=name]").val());
                 this.model.attr("title", $("[name=title]").val());
                 this.model.attr("task",  $("[name=task]").val());
                 this.model.attr("working_now", $("[name=working_now]").is(":checked"));
-
-                console.log("Trying to save", this.model);
 
                 this.model.save(function(hand) {
                     window.location.hash = "#!hands"

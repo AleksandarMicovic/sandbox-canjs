@@ -3,9 +3,7 @@ define(['can/route',
 	'controllers_dashboard',
 	'controllers_livestock',
 	'controllers_crops',
-	'controllers_inventory',
 	'controllers_hands',
-	'controllers_transactions',
 	'can/control/route',
 	], 
 	function(Route,
@@ -13,17 +11,13 @@ define(['can/route',
 		Dashboard,
 		Livestock,
 		Crops,
-		Inventory,
-		Hands,
-		Transactions) {
+		Hands) {
 
 			var views = {
-				dashboard: new Dashboard(),
-				livestock: new Livestock(),
-				crops: new Crops(),
-				inventory: new Inventory(),
+				dashboard: new Dashboard("#content"),
+				livestock: new Livestock("#content"),
+				crops: new Crops("#content"),
 				hands: new Hands("#content"),
-				transactions: new Transactions()
 			}
 
 			Route(":page");
@@ -51,6 +45,7 @@ define(['can/route',
 
 					$("#navigation li").removeClass("active");
 					$(".nav [data-item=" + Route.attr('page') + "]").parent().addClass("active");
-				}
+				},
+				
 			});
 });
