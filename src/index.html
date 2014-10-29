@@ -40,349 +40,349 @@
         </div>
     </nav>
 
+    <!-- All of our templates will be rendered here, in #content. -->
     <div class="container-fluid" id="content" display="none"></div>
 
+    <!-- DASHBOARD TEMPLATE -->
     <script type="text/stache" id="dashboard_template">
         <div class="row">
             <div class="col-md-5 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="panel-title">Weather</h3>
-                  </div>
-                  <div class="panel-body">
-                      Weather here...
-                  </div>
-              </div>
-          </div>
-
-          <div class="col-md-5">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Recent transactions</h3>
-                </div>
-                <div class="panel-body">
-                    Recent transactions...
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-5 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Expected Rain</h3>
-                </div>
-                <div class="panel-body">
-                    Simple table of expected rain...
-                </div>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Hands working today</h3>
-                </div>
-                <div class="panel-body">
-                    List of farm hands working today...
-                </div>
-            </div>
-        </div>  
-    </div>
-</script>
-
-<script type="text/stache" id="livestock_list_template">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Livestock</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped livestock-table">
-                            <thead>
-                                <tr>
-                                    <th>Location</th>
-                                    <th>Type</th>
-                                    <th>Quantity</th>
-                                    <th>GPS</th>
-                                    <th>Edit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#livestock}}
-                                <tr>
-                                    <td class="image"><img src="{{ location }}" class="img-responsive img-thumbnail" /></td>
-                                    <td>{{ animal_type }}</td>
-                                    <td>{{ quantity }}</td>
-                                    <td>{{ gps_latitude }}, {{ gps_longitude }}</td>
-                                    <td><a href="#!livestock/{{ id }}">Edit</a></td>
-                                </tr>
-                                {{/end}}
-                            </tbody>
-                        </table>
+                        <h3 class="panel-title">Hands working right now</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul>
+                            {{#hands}}
+                            <li>{{ name }}</li>
+                            {{/end}}
+                        </ul>
                     </div>
                 </div>
-                <div class="panel-footer">
-                    <a href="#!livestock/new">Add new livestock</a>
+            </div>
+            <div class="col-md-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Livestock on your farm</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul>
+                            {{#animals}}
+                            <li><strong>{{ quantity }}</strong> {{ animal_type }}</li>
+                            {{/end}}
+                        </ul>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </script>
+    <!-- END OF DASHBOARD TEMPLATE -->
+
+    <!-- LIVESTOCK LIST TEMPLATE -->
+    <script type="text/stache" id="livestock_list_template">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Livestock</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped livestock-table">
+                                <thead>
+                                    <tr>
+                                        <th>Location</th>
+                                        <th>Type</th>
+                                        <th>Quantity</th>
+                                        <th>GPS</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#livestock}}
+                                    <tr>
+                                        <td class="image"><img src="{{ location }}" class="img-responsive img-thumbnail" /></td>
+                                        <td>{{ animal_type }}</td>
+                                        <td>{{ quantity }}</td>
+                                        <td>{{ gps_latitude }}, {{ gps_longitude }}</td>
+                                        <td><a href="#!livestock/{{ id }}">Edit</a></td>
+                                    </tr>
+                                    {{/end}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#!livestock/new">Add new livestock</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>    
-</script>
+        </div>    
+    </script>
+    <!-- END OF LIVESTOCK LIST TEMPLATE -->
 
-<script type="text/stache" id="livestock_edit_template">
-    <div class="row">
-        <div class="col-md-{{#create}}10{{#else}}8{{/end}} col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{#create}}New livestock{{#else}}Editing livestock{{/end}}</h3>
-                </div>
-                <div class="panel-body">
-                    <form role="form" id="livestock-form">
-                        <div class="form-group">
-                            <label>Type of livestock</label>
-                            <input type="text" class="form-control" name="animal_type" value="{{ livestock.animal_type }}">
-                        </div>
-                        <div class="form-group">
-                            <label>Quantity</label>
-                            <input type="text" class="form-control" name="quantity" value="{{ livestock.quantity }}">
-                        </div>
-                        <div class="form-group">
-                            <label>GPS Latitude</label>
-                            <input type="text" class="form-control" name="gps_latitude" value="{{ livestock.gps_latitude }}">
-                        </div>
-                        <div class="form-group">
-                            <label>GPS Longitude</label>
-                            <input type="text" class="form-control" name="gps_longitude" value="{{ livestock.gps_longitude }}">
-                        </div>
+    <!-- LIVESTOCK CREATE/EDIT TEMPLATE -->
+    <script type="text/stache" id="livestock_edit_template">
+        <div class="row">
+            <div class="col-md-{{#create}}10{{#else}}8{{/end}} col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{#create}}New livestock{{#else}}Editing livestock{{/end}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" id="livestock-form">
+                            <div class="form-group">
+                                <label>Type of livestock</label>
+                                <input type="text" class="form-control" name="animal_type" value="{{ livestock.animal_type }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input type="text" class="form-control" name="quantity" value="{{ livestock.quantity }}">
+                            </div>
+                            <div class="form-group">
+                                <label>GPS Latitude</label>
+                                <input type="text" class="form-control" name="gps_latitude" value="{{ livestock.gps_latitude }}">
+                            </div>
+                            <div class="form-group">
+                                <label>GPS Longitude</label>
+                                <input type="text" class="form-control" name="gps_longitude" value="{{ livestock.gps_longitude }}">
+                            </div>
 
-                        <input type="hidden" name="id" value="{{ id }}" />
-                        {{#create}}
+                            <input type="hidden" name="id" value="{{ id }}" />
+                            {{#create}}
                             <a role="button" id="create-livestock" type="submit" class="btn btn-default">Create</a>
-                        {{#else}}
+                            {{#else}}
                             <button id="edit-livestock" type="submit" class="btn btn-default">Submit</button>
-                        {{/end}}
-                    </form>
-                </div>
-            </div>
-        </div>
-        {{#create}}}
-        {{#else}}
-        <div class="col-md-2">
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Delete this livestock</h3>
-                </div>
-                <div class="panel-body text-center">
-                    <p>You can't undo this!</p>
-                    <button type="button" class="btn btn-danger" id="delete-livestock">Delete</button>
-                </div>
-            </div>
-        </div>
-        {{/end}}
-    </div> 
-</script>
-
-<script type="text/stache" id="crops_list_template">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Crops</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped crops-table">
-                            <thead>
-                                <tr>
-                                    <th class="location">Location</th>
-                                    <th>Type</th>
-                                    <th>GPS</th>
-                                    <th>Width</th>
-                                    <th>Length</th>
-                                    <th>Average Yield</th>
-                                    <th>Edit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#crops}}
-                                <tr>
-                                    <td class="image"><img src="{{ location }}" class="img-responsive img-thumbnail" /></td>
-                                    <td>{{ type_of_crop }}</td>
-                                    <td>{{ gps_latitude }}, {{ gps_longitude }}</td>
-                                    <td>{{ width }}km</td>
-                                    <td>{{ length }}km</td>
-                                    <td>{{ average_yield }}kg</td>
-                                    <td><a href="#!crops/{{ id }}">Edit</a></td>
-                                </tr>
-                                {{/end}}
-                            </tbody>
-                        </table>
+                            {{/end}}
+                        </form>
                     </div>
                 </div>
-                <div class="panel-footer">
-                    <a href="#!crops/new">Add a new crop</a>
+            </div>
+            {{#create}}}
+            {{#else}}
+            <div class="col-md-2">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Delete this livestock</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        <p>You can't undo this!</p>
+                        <button type="button" class="btn btn-danger" id="delete-livestock">Delete</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>      
-</script>
+            {{/end}}
+        </div> 
+    </script>
+    <!-- END OF LIVESTOCK EDIT/CREATE TEMPLATE -->
 
-<script type="text/stache" id="crops_edit_template">
-    <div class="row">
-        <div class="col-md-{{#create}}10{{#else}}8{{/end}} col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{#create}}New crop{{#else}}Editing crop{{/end}}</h3>
+    <!-- CROPS LIST TEMPLATE -->
+    <script type="text/stache" id="crops_list_template">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Crops</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped crops-table">
+                                <thead>
+                                    <tr>
+                                        <th class="location">Location</th>
+                                        <th>Type</th>
+                                        <th>GPS</th>
+                                        <th>Width</th>
+                                        <th>Length</th>
+                                        <th>Average Yield</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#crops}}
+                                    <tr>
+                                        <td class="image"><img src="{{ location }}" class="img-responsive img-thumbnail" /></td>
+                                        <td>{{ type_of_crop }}</td>
+                                        <td>{{ gps_latitude }}, {{ gps_longitude }}</td>
+                                        <td>{{ width }}km</td>
+                                        <td>{{ length }}km</td>
+                                        <td>{{ average_yield }}kg</td>
+                                        <td><a href="#!crops/{{ id }}">Edit</a></td>
+                                    </tr>
+                                    {{/end}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#!crops/new">Add a new crop</a>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <form role="form" id="crop-form">
-                        <div class="form-group">
-                            <label>Type</label>
-                            <input type="text" class="form-control" name="type_of_crop" value="{{ crop.type_of_crop }}">
-                        </div>
-                        <div class="form-group">
-                            <label>GPS Latitude</label>
-                            <input type="text" class="form-control" name="gps_latitude" value="{{ crop.gps_latitude }}">
-                        </div>
-                        <div class="form-group">
-                            <label>GPS Longitude</label>
-                            <input type="text" class="form-control" name="gps_longitude" value="{{ crop.gps_longitude }}">
-                        </div>
-                        <div class="form-group">
-                            <label>Average Yield</label>
-                            <input type="text" class="form-control" name="average_yield" value="{{ crop.average_yield }}">
-                        </div>
-                        <div class="form-group">
-                            <label>Width (km)</label>
-                            <input type="text" class="form-control" name="width" value="{{ crop.width }}">
-                        </div>
-                        <div class="form-group">
-                            <label>Length (km)</label>
-                            <input type="text" class="form-control" name="length" value="{{ crop.length }}">
-                        </div>
-                        <input type="hidden" name="id" value="{{ id }}" />
-                        {{#create}}
+            </div>
+        </div>      
+    </script>
+    <!-- END OF CROPS LIST TEMPLATE -->
+
+    <!-- CROPS EDIT/CREATE TEMPLATE -->
+    <script type="text/stache" id="crops_edit_template">
+        <div class="row">
+            <div class="col-md-{{#create}}10{{#else}}8{{/end}} col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{#create}}New crop{{#else}}Editing crop{{/end}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" id="crop-form">
+                            <div class="form-group">
+                                <label>Type</label>
+                                <input type="text" class="form-control" name="type_of_crop" value="{{ crop.type_of_crop }}">
+                            </div>
+                            <div class="form-group">
+                                <label>GPS Latitude</label>
+                                <input type="text" class="form-control" name="gps_latitude" value="{{ crop.gps_latitude }}">
+                            </div>
+                            <div class="form-group">
+                                <label>GPS Longitude</label>
+                                <input type="text" class="form-control" name="gps_longitude" value="{{ crop.gps_longitude }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Average Yield</label>
+                                <input type="text" class="form-control" name="average_yield" value="{{ crop.average_yield }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Width (km)</label>
+                                <input type="text" class="form-control" name="width" value="{{ crop.width }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Length (km)</label>
+                                <input type="text" class="form-control" name="length" value="{{ crop.length }}">
+                            </div>
+                            <input type="hidden" name="id" value="{{ id }}" />
+                            {{#create}}
                             <a role="button" id="create-crop" type="submit" class="btn btn-default">Create</a>
-                        {{#else}}
+                            {{#else}}
                             <button id="edit-crop" type="submit" class="btn btn-default">Submit</button>
-                        {{/end}}
-                    </form>
-                </div>
-            </div>
-        </div>
-        {{#create}}}
-        {{#else}}
-        <div class="col-md-2">
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Delete this crop</h3>
-                </div>
-                <div class="panel-body text-center">
-                    <p>You can't undo this!</p>
-                    <button type="button" class="btn btn-danger" id="delete-crop">Delete</button>
-                </div>
-            </div>
-        </div>
-        {{/end}}
-    </div> 
-</script>
-
-<script type="text/stache" id="hands_list_template">
-    <div class="row">
-        {{#each hands}}
-        <div class="col-md-5 {{#oddEven}}{{number}}{{/oddEven}}">
-            <div class="panel {{# if working_now }}panel-success{{#else}}panel-default{{/end}}">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{name}} {{# if working_now}}(working){{#else}}(not working){{/end}}</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <img src="{{ picture }}" class="img-responsive img-thumbnail" />
-                        </div>
-                        <div class="col-xs-8">
-                            <strong>Name: </strong> {{ name }}<br/>
-                            <strong>Job: </strong> {{ title }}<br/>
-                            <strong>Coords: </strong> {{ gps_latitude }}, {{ gps_longitude }}<br/>
-                            <strong>Current Task: </strong> {{ task }}<br/><br/>
-                            <img src="{{ current_map }}" class="img-responsive img-thumbnail" />
-                        </div>
+                            {{/end}}
+                        </form>
                     </div>
                 </div>
-                <div class="panel-footer">
-                    <a href="#!hands/{{ id }}">View detailed</a>
+            </div>
+            {{#create}}}
+            {{#else}}
+            <div class="col-md-2">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Delete this crop</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        <p>You can't undo this!</p>
+                        <button type="button" class="btn btn-danger" id="delete-crop">Delete</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        {{/each}}
-    </div>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">New farm hand</h3>
-                </div>
-                <div class="panel-body text-center">
-                    <a role="button" class="btn btn-success" href="#!hands/new">Create</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</script>
+            {{/end}}
+        </div> 
+    </script>
+    <!-- END OF CROPS EDIT/CREATE TEMPLATE -->
 
-<script type="text/stache" id="hands_edit_template">
-    <div class="row">
-        <div class="col-md-{{#create}}10{{#else}}8{{/end}} col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{#create}}New farm hand{{#else}}Editing farm hand{{/end}}</h3>
+    <!-- FARM HANDS LIST TEMPLATE -->
+    <script type="text/stache" id="hands_list_template">
+        <div class="row">
+            {{#each hands}}
+            <div class="col-md-5 {{#oddEven}}{{number}}{{/oddEven}}">
+                <div class="panel {{# if working_now }}panel-success{{#else}}panel-default{{/end}}">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{name}} {{# if working_now}}(working){{#else}}(not working){{/end}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <img src="{{ picture }}" class="img-responsive img-thumbnail" />
+                            </div>
+                            <div class="col-xs-8">
+                                <strong>Name: </strong> {{ name }}<br/>
+                                <strong>Job: </strong> {{ title }}<br/>
+                                <strong>Coords: </strong> {{ gps_latitude }}, {{ gps_longitude }}<br/>
+                                <strong>Current Task: </strong> {{ task }}<br/><br/>
+                                <img src="{{ current_map }}" class="img-responsive img-thumbnail" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#!hands/{{ id }}">View detailed</a>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <form role="form" id="hand-form">
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" name="name" value="{{ hand.name }}">
-                        </div>
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" class="form-control" name="title" value="{{ hand.title }}">
-                        </div>
-                        <div class="form-group">
-                            <label>Task</label>
-                            <input type="text" class="form-control" name="task" value="{{ hand.task }}">
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" checked="{{ hand.working_now }}" name="working_now"> Working now
-                            </label>
-                        </div>
-                        <input type="hidden" name="id" value="{{ id }}" />
-                        {{#create}}
+            </div>
+            {{/each}}
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">New farm hand</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        <a role="button" class="btn btn-success" href="#!hands/new">Create</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!-- END OF FARM HANDS LIST TEMPLATE -->
+
+    <!-- FARM HANDS EDIT/CREATE TEMPLATE -->
+    <script type="text/stache" id="hands_edit_template">
+        <div class="row">
+            <div class="col-md-{{#create}}10{{#else}}8{{/end}} col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{#create}}New farm hand{{#else}}Editing farm hand{{/end}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" id="hand-form">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" name="name" value="{{ hand.name }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" class="form-control" name="title" value="{{ hand.title }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Task</label>
+                                <input type="text" class="form-control" name="task" value="{{ hand.task }}">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" checked="{{ hand.working_now }}" name="working_now"> Working now
+                                </label>
+                            </div>
+                            <input type="hidden" name="id" value="{{ id }}" />
+                            {{#create}}
                             <button id="create" type="submit" class="btn btn-default">Create</button>
-                        {{#else}}
+                            {{#else}}
                             <button id="edit" type="submit" class="btn btn-default">Submit</button>
-                        {{/end}}
-                    </form>
+                            {{/end}}
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        {{#create}}}
-        {{#else}}
-        <div class="col-md-2">
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Delete this hand</h3>
-                </div>
-                <div class="panel-body text-center">
-                    <p>You can't undo this!</p>
-                    <button type="button" class="btn btn-danger" id="delete">Delete</button>
+            {{#create}}}
+            {{#else}}
+            <div class="col-md-2">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Delete this hand</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        <p>You can't undo this!</p>
+                        <button type="button" class="btn btn-danger" id="delete">Delete</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        {{/end}}
-    </div> 
-</script>
+            {{/end}}
+        </div> 
+    </script>
+    <!-- END OF FARM HANDS EDIT/CREATE TEMPLATE -->
 </body>
 </html>

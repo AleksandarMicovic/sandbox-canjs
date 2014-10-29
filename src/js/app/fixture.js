@@ -48,6 +48,8 @@ require(['can/util/fixture'], function(Fixture) {
         };
     });
 
+    // Instead of repeating queries in fixtures below, resolve Fixture.store first.
+
     var hands = [];
 
     $.each(HANDS.findAll(), function(i, hand) {
@@ -106,6 +108,8 @@ require(['can/util/fixture'], function(Fixture) {
         };
     });
 
+    // Instead of repeating queries in fixtures below, resolve Fixture.store first.
+
     var crops = [];
 
     $.each(CROPS.findAll(), function(i, crop) {
@@ -158,6 +162,8 @@ require(['can/util/fixture'], function(Fixture) {
             gps_longitude: 44.8100145
         };
     });
+
+    // Instead of repeating queries in fixtures below, resolve Fixture.store first.
 
     var livestock = [];
 
