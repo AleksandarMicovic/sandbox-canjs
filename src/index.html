@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,220 +11,270 @@
     <link rel="stylesheet" href="css/app.css" />
 
     <script src="js/vendor/require.js" data-main="js/app/main" async></script>
-  </head>
+</head>
 
-  <body>
+<body>
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
-      <div class="container-fluid">
-	<!-- Brand and toggle get grouped for better mobile display -->
-	<div class="navbar-header">
-	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-            <span class="sr-only">Navbar</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-	  </button>
-	  <a class="navbar-brand" href="#!dashboard" data-item="dashboard">Farm Manager</a>
-	</div>
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="sr-only">Navbar</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#!dashboard" data-item="dashboard">Farm Manager</a>
+            </div>
 
-	<div class="collapse navbar-collapse" id="navbar-collapse">
-	  <ul class="nav navbar-nav" id="navigation">
-            <li><a href="#!dashboard" data-item="dashboard">Dashboard</a></li>
-            <li><a href="#!livestock" data-item="livestock">Livestock</a></li>
-            <li><a href="#!crops" data-item="crops">Crops</a></li>
-            <li><a href="#!inventory" data-item="inventory">Inventory</a></li>
-            <li><a href="#!hands" data-item="hands">Hands</a></li>
-            <li><a href="#!transactions" data-item="transactions">Transactions</a></li>
-          </ul>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav" id="navigation">
+                    <li><a href="#!dashboard" data-item="dashboard">Dashboard</a></li>
+                    <li><a href="#!livestock" data-item="livestock">Livestock</a></li>
+                    <li><a href="#!crops" data-item="crops">Crops</a></li>
+                    <li><a href="#!inventory" data-item="inventory">Inventory</a></li>
+                    <li><a href="#!hands" data-item="hands">Hands</a></li>
+                    <li><a href="#!transactions" data-item="transactions">Transactions</a></li>
+                </ul>
 
-	  <p class="navbar-text navbar-right">Signed in as Aleks</p>
-	</div>
-      </div>
+                <p class="navbar-text navbar-right">Signed in as Aleks</p>
+            </div>
+        </div>
     </nav>
 
     <div class="container-fluid" id="content" display="none"></div>
-    
+
     <script type="text/stache" id="dashboard_template">
-      <div class="row">
-	<div class="col-md-5 col-md-offset-1">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Weather</h3>
-	    </div>
-	    <div class="panel-body">
-              Weather here...
-	    </div>
-	  </div>
-	</div>
-	
-	<div class="col-md-5">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Recent transactions</h3>
-	    </div>
-	    <div class="panel-body">
-              Recent transactions...
-	    </div>
-	  </div>
-	</div>
-      </div>
-      <div class="row">
-	<div class="col-md-5 col-md-offset-1">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Expected Rain</h3>
-	    </div>
-	    <div class="panel-body">
-              Simple table of expected rain...
-	    </div>
-	  </div>
-	</div>
-	<div class="col-md-5">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Hands working today</h3>
-	    </div>
-	    <div class="panel-body">
-              List of farm hands working today...
-	    </div>
-	  </div>
-	</div>	
-      </div>
-    </script>
+        <div class="row">
+            <div class="col-md-5 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Weather</h3>
+                  </div>
+                  <div class="panel-body">
+                      Weather here...
+                  </div>
+              </div>
+          </div>
 
-    <script type="text/stache" id="livestock_template">
-      <div class="row">
-	<div class="col-md-10 col-md-offset-1">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Cows</h3>
-	    </div>
-	    <div class="panel-body">
-              Chart showing milk production
-	    </div>
-	    <div class="panel-footer">
-	      View details
-	    </div>
-	  </div>
-	</div>
-      </div>
-      <div class="row">
-	<div class="col-md-10 col-md-offset-1">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Chickens</h3>
-	    </div>
-	    <div class="panel-body">
-              Chart showing egg production
-	    </div>
-	    <div class="panel-footer">
-	      View details
-	    </div>
-	  </div>
-	</div>
-      </div>
-    </script>
+          <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Recent transactions</h3>
+                </div>
+                <div class="panel-body">
+                    Recent transactions...
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Expected Rain</h3>
+                </div>
+                <div class="panel-body">
+                    Simple table of expected rain...
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Hands working today</h3>
+                </div>
+                <div class="panel-body">
+                    List of farm hands working today...
+                </div>
+            </div>
+        </div>  
+    </div>
+</script>
 
-    <script type="text/stache" id="crops_template">
-      <div class="row">
-	<div class="col-md-10 col-md-offset-1">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Crops</h3>
-	    </div>
-	    <div class="panel-body">
-	      list of all crops in a table, showing type, yeild %, costs, scheduled watering, scheduled tilling, water received, gps box, size in acres
-	      at the end show % positive
-	    </div>
-	    <div class="panel-footer">
-	      Add new crop
-	    </div>
-	  </div>
-	</div>
-      </div>      
-    </script>
+<script type="text/stache" id="livestock_template">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Cows</h3>
+                </div>
+                <div class="panel-body">
+                    Chart showing milk production
+                </div>
+                <div class="panel-footer">
+                    View details
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Chickens</h3>
+                </div>
+                <div class="panel-body">
+                    Chart showing egg production
+                </div>
+                <div class="panel-footer">
+                    View details
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
 
-    <script type="text/stache" id="inventory_list_template">
-      <div class="row">
-	<div class="col-md-10 col-md-offset-1">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Inventory</h3>
-	    </div>
-	    <div class="panel-body">
-	      list of all inventory, the item, type, amount, price
-	    </div>
-	    <div class="panel-footer">
-	      add new inventory item
-	    </div>
-	  </div>
-	</div>
-      </div>      
-    </script>
+<script type="text/stache" id="crops_template">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Crops</h3>
+                </div>
+                <div class="panel-body">
+                    list of all crops in a table, showing type, yeild %, costs, scheduled watering, scheduled tilling, water received, gps box, size in acres
+                    at the end show % positive
+                </div>
+                <div class="panel-footer">
+                    Add new crop
+                </div>
+            </div>
+        </div>
+    </div>      
+</script>
 
-    <script type="text/stache" id="hands_list_template">
-      <div class="row">
-	{{#each hands}}
-	<div class="col-md-5 {{#oddEven}}{{number}}{{/oddEven}}">
-	  <div class="panel {{# if working_now }}panel-success{{#else}}panel-default{{/end}}">
-	    <div class="panel-heading">
-              <h3 class="panel-title text-left">{{name}} {{# if working_now}}(working){{#else}}(not working){{/end}}</h3>
-	    </div>
-	    <div class="panel-body">
-	      <div class="row">
-		<div class="col-xs-4">
-		  <img src="{{ picture }}" class="img-responsive img-thumbnail" />
-		</div>
-		<div class="col-xs-8">
-		  <strong>Name: </strong> {{ name }}<br/>
-		  <strong>Job: </strong> {{ title }}<br/>
-		  <strong>Coords: </strong> {{ gps_latitude }}, {{ gps_longitude }}<br/>
-		  <strong>Current Task: </strong> {{ task }}<br/><br/>
-		  <img src="{{ current_map }}" class="img-responsive img-thumbnail" />
-		</div>
-	      </div>
-	    </div>
-	    <div class="panel-footer">
-	      <!--<a href="#page=hands&id={{ id }}">View detailed</a>-->
-	      <a href="#!hands/{{ id }}">View detailed</a>
-	    </div>
-	  </div>
-	</div>
-	{{/each}}
-      </div>      
-    </script>
+<script type="text/stache" id="inventory_list_template">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Inventory</h3>
+                </div>
+                <div class="panel-body">
+                    list of all inventory, the item, type, amount, price
+                </div>
+                <div class="panel-footer">
+                    add new inventory item
+                </div>
+            </div>
+        </div>
+    </div>      
+</script>
 
-    <script type="text/stache" id="hands_edit_template">
-      <div class="row">
-	<div class="col-md-10 col-md-offset-1">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Edit Farm Hand</h3>
-	    </div>
-	    <div class="panel-body">
-	      stuff sold, date, amount, total
-	    </div>
-	  </div>
-	</div>
-      </div> 
-    </script>
+<script type="text/stache" id="hands_list_template">
+    <div class="row">
+        {{#each hands}}
+        <div class="col-md-5 {{#oddEven}}{{number}}{{/oddEven}}">
+            <div class="panel {{# if working_now }}panel-success{{#else}}panel-default{{/end}}">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{name}} {{# if working_now}}(working){{#else}}(not working){{/end}}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <img src="{{ picture }}" class="img-responsive img-thumbnail" />
+                        </div>
+                        <div class="col-xs-8">
+                            <strong>Name: </strong> {{ name }}<br/>
+                            <strong>Job: </strong> {{ title }}<br/>
+                            <strong>Coords: </strong> {{ gps_latitude }}, {{ gps_longitude }}<br/>
+                            <strong>Current Task: </strong> {{ task }}<br/><br/>
+                            <img src="{{ current_map }}" class="img-responsive img-thumbnail" />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <!--<a href="#page=hands&id={{ id }}">View detailed</a>-->
+                    <a href="#!hands/{{ id }}">View detailed</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">New farm hand</h3>
+                </div>
+                <div class="panel-body text-center">
+                    <a role="button" class="btn btn-success" href="#!hands/new">Create</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
 
-    <script type="text/stache" id="transactions_list_template">
-      <div class="row">
-	<div class="col-md-10 col-md-offset-1">
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-              <h3 class="panel-title">Transactions</h3>
-	    </div>
-	    <div class="panel-body">
-	      stuff sold, date, amount, total
-	    </div>
-	    <div class="panel-footer">
-	      add new transaction
-	    </div>
-	  </div>
-	</div>
-      </div>      
-    </script>
-  </body>
+<script type="text/stache" id="hands_edit_template">
+    <div class="row">
+        <div class="col-md-{{#create}}10{{#else}}8{{/end}} col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{#create}}New farm hand{{#else}}Editing farm hand{{/end}}</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" id="hand-form">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="name" value="{{ hand.name }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" class="form-control" name="title" value="{{ hand.title }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Task</label>
+                            <input type="text" class="form-control" name="task" value="{{ hand.task }}">
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" checked="{{ hand.working_now }}" name="working_now"> Working now
+                            </label>
+                        </div>
+                        <input type="hidden" name="id" value="{{ id }}" />
+                        {{#create}}
+                            <button id="create" type="submit" class="btn btn-default">Create</button>
+                        {{#else}}
+                            <button id="edit" type="submit" class="btn btn-default">Submit</button>
+                        {{/end}}
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{#create}}}
+        {{#else}}
+        <div class="col-md-2">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Delete this hand</h3>
+                </div>
+                <div class="panel-body text-center">
+                    <p>You can't undo this!</p>
+                    <button type="button" class="btn btn-danger" id="delete">Delete</button>
+                </div>
+            </div>
+        </div>
+        {{/end}}
+    </div> 
+</script>
+
+<script type="text/stache" id="transactions_list_template">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Transactions</h3>
+                </div>
+                <div class="panel-body">
+                    stuff sold, date, amount, total
+                </div>
+                <div class="panel-footer">
+                    add new transaction
+                </div>
+            </div>
+        </div>
+    </div>      
+</script>
+</body>
 </html>

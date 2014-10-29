@@ -1,35 +1,35 @@
 require(['can/util/fixture'], function(Fixture) {
     var FIRST_NAMES = [
-	"Dion", "Nazem", "Ivan", "Katarina", "John", "Akiho",
-	"Alice", "Emily", "Phil", "David", "Mark", "Joffrey"
+    "Dion", "Nazem", "Ivan", "Katarina", "John", "Akiho",
+    "Alice", "Emily", "Phil", "David", "Mark", "Joffrey"
     ];
 
     var LAST_NAMES = [
-	"Phaneuf", "Kadri", "Kessel", "Gardiner", "Clarkson", "Bozak",
-	"Van-Riemsdyk", "Lupul", "Franson", "Winnik", "Reimer", "Bernier"
+    "Phaneuf", "Kadri", "Kessel", "Gardiner", "Clarkson", "Bozak",
+    "Van-Riemsdyk", "Lupul", "Franson", "Winnik", "Reimer", "Bernier"
     ];
 
     var JOBS = [
-	"Picker", "Driver", "Manager", "Herder", "Animal Specialist", "Scientist"
+    "Picker", "Driver", "Manager", "Herder", "Animal Specialist", "Scientist"
     ];
 
     var TASKS = [
-	"picking corn", "picking apples", "picking strawberries", "feeding cows",
-	"feeding chickens", "driving", "unpacking", "packing", "auditing"
+    "picking corn", "picking apples", "picking strawberries", "feeding cows",
+    "feeding chickens", "driving", "unpacking", "packing", "auditing"
     ];
 
     var HANDS = Fixture.store(15, function(i) {
-	return {
-	    id: i,
-	    name: Fixture.rand(FIRST_NAMES, 1)[0] + " " + Fixture.rand(LAST_NAMES, 1)[0],
-	    title: Fixture.rand(JOBS, 1)[0],
-	    gps_latitude: 44.8100145,
-	    gps_longitude: 20.4010089,
-	    working_now: Fixture.rand([true, false], 1)[0],
-	    task: Fixture.rand(TASKS, 1)[0],
-	    picture: "assets/images/avatar.png",
-	    current_map: "assets/images/maps/map_" + Fixture.rand(1, 8) + ".png"
-	}
+        return {
+            id: i,
+            name: Fixture.rand(FIRST_NAMES, 1)[0] + " " + Fixture.rand(LAST_NAMES, 1)[0],
+            title: Fixture.rand(JOBS, 1)[0],
+            gps_latitude: 44.8100145,
+            gps_longitude: 20.4010089,
+            working_now: Fixture.rand([true, false], 1)[0],
+            task: Fixture.rand(TASKS, 1)[0],
+            picture: "assets/images/avatar.png",
+            current_map: "assets/images/maps/map_" + Fixture.rand(1, 8) + ".png"
+        }
     });
 
     // Build individual lists that are going to be used app-wide.
@@ -37,16 +37,41 @@ require(['can/util/fixture'], function(Fixture) {
     var hands = [];
 
     $.each(HANDS.findAll(), function(i, hand) {
-	hands.push(hand);
+        hands.push(hand);
     });
 
     hands = hands[3];
 
     Fixture('GET /hands', function(request, response) {
-	return hands;
+        return hands;
     });
 
     Fixture('GET /hands/{id}', function(request, response) {
-	return hands[request.data.id];
+        return hands[request.data.id];
+    });
+
+    Fixture('PUT /hands/{id}', function(request, response) {
+        can.extend(hands[request.data.id], request.data);
+        response({});
+    });
+
+    Fixture('POST /hands', function(request, response) {
+        hands.push({
+            id: hands.length,
+            name: request.data.name,
+            title: request.data.title,
+            gps_latitude: 44.8100145,
+            gps_longitude: 20.4010089,
+            working_now: request.data.working_now,
+            task: request.data.task,
+            picture: "assets/images/avatar.png",
+            current_map: "assets/images/maps/map_" + Fixture.rand(1, 8) + ".png"
+        });
+        response(hands[hands.length-1]);
+    });
+
+    Fixture('DELETE /hands/{id}', function(request, response) {
+        delete hands[request.data.id];
+        response({});
     });
 });
